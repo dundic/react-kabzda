@@ -10,8 +10,7 @@ export const UncontrolledAccordion = (props: Props) => {
 
     return (
             <div>
-                <AccordionTitle title={props.title} />
-                <button onClick={()=>{setExpanded(!expanded)}}>toggle</button>
+                <AccordionTitle title={props.title} onClick={()=>{setExpanded(!expanded)}}/>
                 {expanded && <AccordionBody/>}
             </div>
     );
@@ -19,16 +18,17 @@ export const UncontrolledAccordion = (props: Props) => {
 
 type AccordionTitleProps = {
     title: string
+    onClick: () => void
 }
 
-const AccordionTitle = ({title}: AccordionTitleProps) => {
-    return <h3>---{title}---</h3>
+const AccordionTitle = ({title, onClick}: AccordionTitleProps) => {
+    return <h3 onClick={onClick}>---{title}---</h3>
 }
 
 const AccordionBody = () => {
     return <ul>
-        <li>1</li>
-        <li>2</li>
-        <li>3</li>
+        <li>Gerry</li>
+        <li>Mitch</li>
+        <li>Sandra</li>
     </ul>
 }

@@ -1,36 +1,27 @@
 import {useState} from 'react';
 
-export const UncontrolledRating = () => {
+type UncontrolledRatingProps = {}
 
-    const[mark, setMark] = useState(0);
+export const UncontrolledRating = (props: UncontrolledRatingProps) => {
+
+    let [value, setValue] = useState(0)
 
     return (
             <div>
-                <Star painted={mark > 0}/>
-                <button onClick={()=>setMark(1)}>1</button>
-                <Star painted={mark > 1}/>
-                <button onClick={()=>setMark(2)}>2</button>
-                <Star painted={mark > 2}/>
-                <button onClick={()=>setMark(3)}>3</button>
-                <Star painted={mark > 3}/>
-                <button onClick={()=>setMark(4)} >4</button>
-                <Star painted={mark > 4}/>
-                <button onClick={()=>setMark(5)}>5</button>
+                <Star painted={value > 0} setValue={()=>setValue(1)} />
+                <Star painted={value > 1} setValue={()=>setValue(2)} />
+                <Star painted={value > 2} setValue={()=>setValue(3)} />
+                <Star painted={value > 3} setValue={()=>setValue(4)} />
+                <Star painted={value > 4} setValue={()=>setValue(5)} />
             </div>
     );
 };
 
 type StarProps = {
-    painted?: boolean
+    painted: boolean
+    setValue: () => void
 }
 
-const Star = ({painted}: StarProps) => {
-    // if(mark) {
-    //     return <span><b>star </b></span>
-    // } else {
-    //     return <span>star </span>
-    // }
-    return painted
-            ? <span><b>star </b></span>
-            : <span>star </span>
+const Star = ({painted, setValue}: StarProps) => {
+    return <span onClick={setValue}> {painted ? <b>star</b> : 'star'}</span>
 }
